@@ -9,7 +9,11 @@ const express=require("express")
 const router=express.Router()
 const sendOTP=require('./otp')
 const OTP=require('./generateOTP')
+const mongoose=require('mongoose')
+const User=require('../database/schemas/user.schema')
+const jwt=require('jsonwebtoken')
 
+const jwt_secret=process.env.JSON_Secret;
 
 function checkUserExist(req,res,next){
     const existence=false   //Logic to check if user already exist 
@@ -28,10 +32,21 @@ router.get("/",(req,res)=>{
 })
 
 router.post("/",checkUserExist,async(req,res)=>{
-    const {name,email,password}=req.body;
-    const otp=OTP();
-    await sendOTP(name,email,otp)
-    res.json({"Status":"Sign up Success"})
+    const userData=req.body;                           //store the body in userData const
+    const otp=OTP();                                  //generate the otp
+    await sendOTP(userData.name,userData.email,otp)   //send the otp to corresponding Email id
+
+
+    const user = await User.create({
+        _id: new mongoose.Types.ObjectId(),
+        name:userData.name,
+        email:userData.email,
+        password:userData.password
+    })     
+
+
+    const token=jwt.sign(userData,jwt_secret)         //generate the jwt token
+    res.json(token)                                   //send the token in response
 })
 
 router.post("/verify-otp",(req,res)=>{
