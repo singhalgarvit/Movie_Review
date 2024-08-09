@@ -37,7 +37,7 @@ router.post("/",checkUserExist,async(req,res)=>{
     await sendOTP(userData.name,userData.email,otp)   //send the otp to corresponding Email id
 
 
-    const user = await User.create({
+    const user = await User.create({                    //save the userData to the User collection in database
         _id: new mongoose.Types.ObjectId(),
         name:userData.name,
         email:userData.email,
