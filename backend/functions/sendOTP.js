@@ -24,7 +24,7 @@ const sendOTP=(name,email,otp)=>{   //function to implement OTP send Logic
 
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
-      console.log(error);
+      console.log(`Email Could not be sent because ${error}`);
     } else {
       console.log('Email sent: ' + info.response);
     }
