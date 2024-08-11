@@ -1,6 +1,6 @@
 /*
 
- /auth/login
+ /auth/user/login
 
  */
 

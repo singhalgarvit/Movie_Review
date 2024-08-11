@@ -1,29 +1,22 @@
 /*
 
- /auth/signup
+ /auth/user/signup
 
  */
 
 
 const express=require("express")
 const router=express.Router()
-const sendOTP=require('./otp')
-const OTP=require('./generateOTP')
+const sendOTP=require('../../functions/sendOTP')
+const OTP=require('../../functions/generateOTP')
 const mongoose=require('mongoose')
-const User=require('../database/schemas/user.schema')
+const User=require('../../database/schemas/user.schema')
 const jwt=require('jsonwebtoken')
+const checkUserExist=require('../../middlewares/checkUserExist')
 
 const jwt_secret=process.env.JSON_Secret;
 
-function checkUserExist(req,res,next){
-    const existence=false   //Logic to check if user already exist 
-    if(existence){
-        res.send("User Already Exist Please Login")
-    }
-    else{
-        next();
-    }
-}
+
 
 
 
@@ -46,7 +39,7 @@ router.post("/",checkUserExist,async(req,res)=>{
 
 
     const token=jwt.sign(userData,jwt_secret)         //generate the jwt token
-    res.json(token)                                   //send the token in response
+    res.status(200).json(token)                                   //send the token in response
 })
 
 router.post("/verify-otp",(req,res)=>{
