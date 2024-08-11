@@ -13,6 +13,10 @@ connectDB();
 const auth=require("./Auth")
 app.use('/auth',auth);
 
+const AdminAPI=require('./AdminAPI')
+app.use('/admin',AdminAPI)
+
+
 
 const port=process.env.PORT;
 

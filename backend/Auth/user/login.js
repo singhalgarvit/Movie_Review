@@ -11,9 +11,6 @@ const jwt=require('jsonwebtoken')
 
 const jwt_secret=process.env.JSON_Secret;
 
-router.get("/",(req,res)=>{
-    res.json({"Status":"Login Success"})
-})
 
 router.post("/",(req,res)=>{
     const token=req.headers.token;

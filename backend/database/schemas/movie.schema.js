@@ -27,6 +27,6 @@ const MovieSchema=new Schema({
     }
 })
 
-const Admin=mongoose.model("Movie",MovieSchema)
+const Movie=mongoose.model("Movie",MovieSchema)
 
-module.exports=Admin
+module.exports=Movie

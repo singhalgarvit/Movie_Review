@@ -12,17 +12,13 @@ const OTP=require('../../functions/generateOTP')
 const mongoose=require('mongoose')
 const User=require('../../database/schemas/user.schema')
 const jwt=require('jsonwebtoken')
-const checkUserExist=require('../../middlewares/checkUserExist')
+const checkUserExist=require('../../middlewares/userExist')
 
 const jwt_secret=process.env.JSON_Secret;
 
 
 
 
-
-router.get("/",(req,res)=>{
-    res.send("Sign Up Success")
-})
 
 router.post("/",checkUserExist,async(req,res)=>{
     const userData=req.body;                           //store the body in userData const

@@ -5,7 +5,7 @@ async function adminExist(req,res,next){
     try{
         const admin=await Admin.findOne({email:adminData.email});
             if(!admin) {
-                res.status(404).send("Admin not found with this Email");
+             return   res.status(404).send("Admin not found with this Email");
             }
             else{
                 req.savedPass=admin.password; //this is the password that is stored in database for the admin
