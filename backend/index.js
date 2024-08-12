@@ -16,6 +16,9 @@ app.use('/auth',auth);
 const AdminAPI=require('./AdminAPI')
 app.use('/admin',AdminAPI)
 
+const UserAPI=require('./UserAPI')
+app.use('/user',UserAPI)
+
 
 
 const port=process.env.PORT;
