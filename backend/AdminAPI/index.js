@@ -10,19 +10,19 @@ const router=express.Router();
 const adminAuth=require('../middlewares/adminAuth')
 router.use(adminAuth)
 
-const create=require('./create')
+const create=require('./create')    //To create movies
 router.use('/create',create)
 
-const movies=require('./movies')
+const movies=require('./movies')    //To read all the movies
 router.use('/movies',movies)
 
-const deleteMovie=require('./delete')
+const deleteMovie=require('./delete')   //To delete a specific movie by ID
 router.use('/delete',deleteMovie)
 
-const movie=require('./movie')
+const movie=require('./movie')          //To read a specific movie by ID
 router.use('/movie',movie)
 
-const update=require('./update')
+const update=require('./update')        //To update a movie info
 router.use('/update',update)
 
 router.get('/',(req,res)=>{
